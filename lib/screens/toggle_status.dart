@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:stateManagement/controllers/resturant_controller.dart';
 
 class ToggleStatus extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    final restroController = ResturantController.to;
     print("ToggleStatus screen building...");
 
     return Scaffold(
@@ -19,10 +21,12 @@ class ToggleStatus extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(height: 16),
-              Switch(
-                onChanged: (value) => {},
-                activeColor: Colors.purple,
-                value: false,
+              Obx(
+                () => Switch(
+                  onChanged: (value) => {restroController.setIsOpen(value)},
+                  activeColor: Colors.purple,
+                  value: restroController.isOpen.value,
+                ),
               ),
             ],
           ),

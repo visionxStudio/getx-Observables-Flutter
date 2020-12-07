@@ -1,7 +1,11 @@
+import 'package:get/get.dart';
+import 'package:stateManagement/controllers/resturant_controller.dart';
+
 import '../widget/rounded_input.dart';
 import 'package:flutter/material.dart';
 
 class EditName extends StatelessWidget {
+  final restroController = ResturantController.to;
   @override
   Widget build(BuildContext context) {
     print("EditName screen building...");
@@ -11,15 +15,19 @@ class EditName extends StatelessWidget {
         padding: EdgeInsets.all(24),
         child: Column(
           children: [
-            Text(
-              "Name",
-              style: TextStyle(fontSize: 48),
+            Obx(
+              () => Text(
+                restroController.name.value,
+                style: TextStyle(fontSize: 48),
+              ),
             ),
             SizedBox(height: 16),
             RoundedInput(
               hintText: "Restauarant Name",
-              onSubmit: (value) => print(value),
-            )
+              onSubmit: (value) {
+                restroController.setName(value);
+              },
+            ),
           ],
         ),
       ),

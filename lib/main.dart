@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:stateManagement/controllers/resturant_controller.dart';
+
 import './screens/add_followers.dart';
 import './screens/add_reviews.dart';
 import './screens/edit_follower_count.dart';
@@ -7,12 +10,16 @@ import './screens/toggle_status.dart';
 import './screens/update_menu.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Get.put(ResturantController());
+  return runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Getx observables learning',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,

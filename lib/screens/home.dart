@@ -1,8 +1,12 @@
+import 'package:get/get.dart';
+import 'package:stateManagement/controllers/resturant_controller.dart';
+
 import '../widget/card_info.dart';
 import '../widget/side_drawer.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
+  final restroController = ResturantController.to;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,18 +23,25 @@ class Home extends StatelessWidget {
                 body: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      "Pizza Shack",
-                      style: TextStyle(fontSize: 22),
+                    Obx(
+                      () => Text(
+                        restroController.name.value,
+                        style: TextStyle(fontSize: 22),
+                      ),
                     ),
                     SizedBox(height: 4),
-                    Text(
-                      "Followers: 0",
-                      style: TextStyle(fontSize: 18),
+                    Obx(
+                      () => Text(
+                        "Followers: ${restroController.followerCount.value}",
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
                     SizedBox(height: 4),
-                    Text("Open",
-                        style: TextStyle(color: Colors.green, fontSize: 18)),
+                    Obx(
+                      () => Text(
+                          restroController.isOpen.value ? "Open" : "Close",
+                          style: TextStyle(color: Colors.green, fontSize: 18)),
+                    )
                   ],
                 ),
               ),
