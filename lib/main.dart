@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Coding with Curry',
+      title: 'Getx observables learning',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
