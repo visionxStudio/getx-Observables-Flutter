@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:stateManagement/controllers/resturant_controller.dart';
+
 import '../widget/rounded_input.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +11,8 @@ class AddFollowers extends StatelessWidget {
   Widget build(BuildContext context) {
     print("AddFollowers screen building...");
 
+    final restroController = ResturantController.to;
+
     return Scaffold(
       appBar: AppBar(title: Text("Test Follower List")),
       body: SingleChildScrollView(
@@ -16,16 +21,18 @@ class AddFollowers extends StatelessWidget {
           children: [
             RoundedInput(
               hintText: "Follower Name",
-              onSubmit: (value) => print(value),
+              onSubmit: (value) => restroController.addFollower(value),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text("Follower ${(index + 1)}"),
-                );
-              },
+            Obx(
+              () => ListView.builder(
+                shrinkWrap: true,
+                itemCount: restroController.followerList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(restroController.followerList[index]),
+                  );
+                },
+              ),
             ),
           ],
         ),

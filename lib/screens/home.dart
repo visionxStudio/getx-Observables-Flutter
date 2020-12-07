@@ -39,8 +39,12 @@ class Home extends StatelessWidget {
                     SizedBox(height: 4),
                     Obx(
                       () => Text(
-                          restroController.isOpen.value ? "Open" : "Close",
-                          style: TextStyle(color: Colors.green, fontSize: 18)),
+                          restroController.isOpen.value ? "Open" : "Closed",
+                          style: TextStyle(
+                              color: restroController.isOpen.value
+                                  ? Colors.green
+                                  : Colors.red,
+                              fontSize: 18)),
                     )
                   ],
                 ),
