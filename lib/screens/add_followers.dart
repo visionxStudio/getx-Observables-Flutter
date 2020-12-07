@@ -1,17 +1,14 @@
-import 'package:get/get.dart';
-import 'package:stateManagement/controllers/resturant_controller.dart';
-
-import '../widget/rounded_input.dart';
+import '../controllers/restaurant_controller.dart';
+import '../widget/cheetah_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddFollowers extends StatelessWidget {
-  const AddFollowers({Key key}) : super(key: key);
+  final restoController = RestaurantController.to;
 
   @override
   Widget build(BuildContext context) {
     print("AddFollowers screen building...");
-
-    final restroController = ResturantController.to;
 
     return Scaffold(
       appBar: AppBar(title: Text("Test Follower List")),
@@ -19,17 +16,21 @@ class AddFollowers extends StatelessWidget {
         padding: EdgeInsets.all(24),
         child: Column(
           children: [
-            RoundedInput(
+            CheetahInput(
               hintText: "Follower Name",
-              onSubmit: (value) => restroController.addFollower(value),
+              onSubmit: (value) => restoController.addFollower(value),
             ),
             Obx(
               () => ListView.builder(
                 shrinkWrap: true,
-                itemCount: restroController.followerList.length,
+                itemCount: restoController.followerList.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(restroController.followerList[index]),
+                    title: Text(restoController.followerList[index]),
+                    leading: IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () => restoController.removeFollower(index),
+                    ),
                   );
                 },
               ),

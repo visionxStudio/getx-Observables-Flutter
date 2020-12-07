@@ -4,8 +4,8 @@ class Menu {
   String location;
 
   Menu({
-    this.name = "Menu",
-    this.color = "Blue",
-    this.location = "California",
+    this.name = "Name",
+    this.color = "Color",
+    this.location = "Location",
   });
 }

@@ -1,11 +1,14 @@
+import '../controllers/restaurant_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:stateManagement/controllers/resturant_controller.dart';
 
 class EditFollowerCount extends StatelessWidget {
+  final restoController = RestaurantController.to;
+
   @override
   Widget build(BuildContext context) {
-    final restroController = ResturantController.to;
+    print("EditFollowerCount screen building...");
+
     return Scaffold(
       appBar: AppBar(title: Text("Test Follower Count")),
       body: Container(
@@ -17,23 +20,18 @@ class EditFollowerCount extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.remove),
                 iconSize: 50,
-                onPressed: () {
-                  restroController.decrementCount();
-                },
+                onPressed: () => restoController.decrement(),
               ),
               Obx(
                 () => Text(
-                  restroController.followerCount.value.toString(),
+                  restoController.followerCount.value.toString(),
                   style: TextStyle(fontSize: 48),
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.add),
-                iconSize: 50,
-                onPressed: () {
-                  restroController.incrementCount();
-                },
-              ),
+                  icon: Icon(Icons.add),
+                  iconSize: 50,
+                  onPressed: () => restoController.incrementCount()),
             ],
           ),
         ),
