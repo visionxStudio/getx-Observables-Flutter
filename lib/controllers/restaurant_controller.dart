@@ -22,6 +22,15 @@ class RestaurantController extends GetxController {
     once(followerList,
         (value) => print("followerList updated first time $value"));
 
+    // deboune waits for certain time period until the last time the event is listened
+    debounce(
+      followerCount,
+      (value) => print("count $value"),
+      time: Duration(seconds: 3),
+    );
+
+    // Interval runs every specified seconds unlike debounce
+
     interval(
       followerCount,
       (value) => print("Count: $value"),
@@ -31,7 +40,6 @@ class RestaurantController extends GetxController {
 
   setName(String restoName) {
     // call api
-
     //set name from api data
     name = restoName;
     update();
